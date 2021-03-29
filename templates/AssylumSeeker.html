@@ -1,0 +1,114 @@
+{% load static %}
+<html>
+    <head>
+        <title>Helpine</title>
+        <link rel = "stylesheet" href = "{% static 'Mains.css'%}">
+        <link rel = "stylesheet" href = "{% static 'nav.css'%}">
+    </head>
+
+    <body style = "background-color:  #ffffff;">
+        
+        <h1 style = "text-align: left;" class  = "heading">Get Support</h1>
+        
+        <div class="topnav">
+            <a class="active" href="#home">Home</a>
+            <a href="#about">About</a>
+            
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <Span><input type="text" placeholder="Search.." name="search">
+                        <button type="submit">Submit</button></Span>
+                    </form>
+                </div>
+            </div>
+            <script src = "{% static 'assets/js/translate/translate.js'%}"></script>
+            <script src = "{% static 'assets/js/translate/translate2.js'%}"></script>
+            <div id="translation" style = "float: left; margin : 0; padding : none;" class = "active"></div>
+            <br>
+            </div>
+        
+    <div class = "btn">
+        <center>        
+            <table>
+                
+                <tr>
+                    <td><a href= ""><button class="btn info">Support For Homeless</button></a></td><td><a href = ""><button class="btn info">For Women Only</button></a></td>
+                </tr>
+                    
+                <tr>
+                    <td><a href= ""><button class="btn info">For Support With NASS</button></a></td><td><a href = ""><button class="btn info">For Parents and Children</button></a></td>
+                </tr>
+
+                <tr>
+                    <td><a href= ""><button class="btn info">For Legal Advice</button></a></td><td><a href = ""><button class="btn info">For ESOL</button></a></td>
+                </tr>
+
+                <tr>
+                    <td><a href= ""><button class="btn info">For Health Care</button></a></td><td><a href = ""><button class="btn info">For Emotional Support</button></a></td>
+                </tr>
+                <tr>
+                    <td><a href= ""><button class="btn info">Food and Clothing</button></a></td><td><a href = ""><button class="btn info">...etc</button></a></td>
+                </tr> 
+                <tr>
+                    <td><a href= ""><button class="btn info">Added new</button></a></td>
+                </tr>    
+                    
+                
+            </table>
+        </center>
+    </div>
+        <table  class = "register" style = "text-align:  left;">
+            <tr>
+                <td id = "contactF">
+                <div class = "contact" style = "font-size: 20px;">
+                <h2>Contact Us</h2>
+                <div class="container">
+                    <form action="action_page.php">
+                
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+                
+                    <label for="subject">Subject</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:50px"></textarea>
+                
+                    <input type="submit" value="Submit">
+                
+                    </form>
+                </div>
+                </div>
+
+                </td>
+          <td id = "registerF">
+            <div class = "contact" style = "font-size: 20px;">
+                <h2>Register to chat </h2>
+                <div class="container">
+                    <form action="action_page.php">
+                        <label for="fname">Full Name</label>
+                        <input type="text" id="fname" name="username" placeholder = "Username">
+                      <label for="fname">Uername</label>
+                      <input type="text" id="fname" name="username" placeholder = "Username">
+                  
+                      <label for="lname">Password</label>
+                      <input type="text" id="lname" name="password" placeholder="password">
+                  
+                      <label for="lname">Confirm Password</label>
+                      <input type="text" id="lname" name="password" placeholder="password">
+                  
+                      
+                      <input type="submit" value="Submit">
+                  
+                    </form>
+                  </div>
+          </td>      
+    </body>
+</html>
