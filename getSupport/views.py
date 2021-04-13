@@ -1,10 +1,20 @@
 from django.shortcuts import render
 from .models import Hospital, Bank, AssylumHelp
-
+from django.contrib.auth.models import User, auth
 
 # Create your views here.
 def front(request):
-    return render(request,'Main.html')
+    if request.method == 'POST':
+        fullname = request.POST['fullname']
+        username = request.POST['username']
+        password = request.POST['password']
+        confirm_password = request.POST['repassword']
+        user = User.objects.create_user(fullname = fullname, password = password, username = username)
+        user.save()
+        print("user created")
+        return redirect ('/')
+    else:
+        return render(request,'Main.html')
 
 def publicservices(request):
     return render(request,'publicservices.html')
@@ -45,4 +55,3 @@ def base(request):
 
 def login(request):
     return render(request, 'login.html')
-
