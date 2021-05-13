@@ -6,7 +6,6 @@
     </head>
     <style>
         body {
-            background-image: url(https://i.pinimg.com/originals/00/5e/7b/005e7b665a61d4f71e52ad626dd3ec56.png);
             background-repeat: no-repeat;
      background-attachment: fixed;
      background-size: cover;
@@ -14,11 +13,68 @@
      text-align: center;
      font-size: 60px;
         }
+        table{
+          width:100%;
+          font-size: 60px;
+        }
+        .container img{
+          margin-left: 5%;
+        }
+        .container td{
+          font-size: 20px;
+        }
+        .container th{
+          font-size: 20px;
+        }
     </style>
     <body>
-        <script src = "{% static 'assets/js/translate/translate.js'%}"></script>
-            <script src = "{% static 'assets/js/translate/translate2.js'%}"></script>
-            <div id="translation" style = "float: left;"></div>
-        <h1>Emergency Help</h1>
+      {%include "navbar.html"%}
+      <div class = "message" style="background: linear-gradient(to right, #b92b27, #1565c0);
+      color:blanchedalmond; background-repeat: no-repeat; height:100%;">
+
+        <div class="container">
+
+        <table border ="2">
+          <img src="{%static "emergency.jpg"%}" alt="">
+          <tr>
+            <th>Sectors</th>
+            <th>Helpline Number</th>
+          </tr>
+          <tr>
+            <td>Ambulance</td>
+            <td>999 or 112</td>
+          </tr>
+          <tr>
+            <td>Police</td>
+            <td>999 or 112</td>
+          </tr>
+          <tr>
+            <td>Fire</td>
+            <td>999 or 112</td>
+          </tr>
+            <tr>
+              <td>coast guard</td>
+              <td>999 or 112</td>
+            </tr>
+            <tr>
+              <td>Samaritans - Listening Service</td>
+              <td>0292 034 4022</td>
+            </tr>
+            <tr>
+              <td>Victim Support Line:</td>
+              <td>0808 168 9111</td>
+            </tr>
+            <tr>
+              <td>Report a Hate Crime:</td>
+              <td>0300 303 1982</td>
+            </tr>
+            <tr>
+              <td>police (non-emergency)</td>
+              <td>101</td>
+            </tr>
+
+        </table>
+</div>
+      </div>
     </body>
 </html>

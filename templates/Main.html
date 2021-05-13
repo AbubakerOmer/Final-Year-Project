@@ -1,6 +1,9 @@
 {% load static %}
+
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Helpine</title>
         <link rel = "stylesheet" href = "{% static 'Mains.css'%}">
         <link rel = "stylesheet" href = "{% static 'nav.css'%}">
@@ -11,9 +14,23 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     </head>
     <style>
+        @media screen and (max-width: 800px) {
+  .login-box, .main, .right {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+
+  }
+}
+         @media screen and (max-width:500px) {
+  .login-box, .main, .right {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
+        body{
+            background: linear-gradient(to right, #b92b27, #1565c0)!important;
+        }
         .login-box {
             position: absolute;
             top: 50%;
@@ -26,7 +43,7 @@
             box-shadow: 0 15px 25px rgba(0,0,0,.6);
             border-radius: 10px;
           }
-          
+
           .login-box h2 {
             margin: 0 0 30px;
             padding: 0;
@@ -47,7 +64,7 @@
             margin-top: 40px;
             letter-spacing: 4px
           }
-          
+
           .login-box a:hover {
             background: #03e9f4;
             color: #fff;
@@ -57,12 +74,12 @@
                         0 0 50px #03e9f4,
                         0 0 100px #03e9f4;
           }
-          
+
           .login-box a span {
             position: absolute;
             display: block;
           }
-          
+
           .login-box a span:nth-child(1) {
             top: 0;
             left: -100%;
@@ -71,7 +88,7 @@
             background: linear-gradient(90deg, transparent, #03e9f4);
             animation: btn-anim1 1s linear infinite;
           }
-          
+
           @keyframes btn-anim1 {
             0% {
               left: -100%;
@@ -80,7 +97,7 @@
               left: 100%;
             }
           }
-          
+
           .login-box a span:nth-child(2) {
             top: -100%;
             right: 0;
@@ -90,7 +107,7 @@
             animation: btn-anim2 1s linear infinite;
             animation-delay: .25s
           }
-          
+
           @keyframes btn-anim2 {
             0% {
               top: -100%;
@@ -99,7 +116,7 @@
               top: 100%;
             }
           }
-          
+
           .login-box a span:nth-child(3) {
             bottom: 0;
             right: -100%;
@@ -109,7 +126,7 @@
             animation: btn-anim3 1s linear infinite;
             animation-delay: .5s
           }
-          
+
           @keyframes btn-anim3 {
             0% {
               right: -100%;
@@ -118,7 +135,7 @@
               right: 100%;
             }
           }
-          
+
           .login-box a span:nth-child(4) {
             bottom: -100%;
             left: 0;
@@ -128,7 +145,7 @@
             animation: btn-anim4 1s linear infinite;
             animation-delay: .75s
           }
-          
+
           @keyframes btn-anim4 {
             0% {
               bottom: -100%;
@@ -156,26 +173,14 @@
         .button2:hover {
             box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
           }
-          
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
 	box-sizing: border-box;
 }
 
-.foot {
-	background-image: url(https://wallpaperaccess.com/full/1282794.jpg);
-    background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-	margin: -20px 0 50px;
-}
+
 
 h1 {
 	font-weight: bold;
@@ -253,7 +258,7 @@ input {
 .container {
 	background-color: #fff;
 	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25),
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
@@ -298,7 +303,7 @@ input {
 		opacity: 0;
 		z-index: 1;
 	}
-	
+
 	50%, 100% {
 		opacity: 1;
 		z-index: 5;
@@ -322,7 +327,7 @@ input {
 
 .overlay {
 	background:#80e5ff;
-	
+
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -385,52 +390,47 @@ input {
 	height: 40px;
 	width: 40px;
 }
+
+.chat-icon{
+  float:left;
+  margin-left: 80%;
+  height: 80px;
+  width: 50px;
+}
+.container h1{
+  color:gray;
+}
+.container{
+  color:lightblue;
+  background-color: transparent !important;
+    overflow: auto;
+
+
+}
     </style>
-    <body style = "background-color:  #ffffff;">
-        <div style = "background-color:#3366ff">
-        <h1 style = "background-image:url(https://png.pngtree.com/png-clipart/20190614/original/pngtree-blue-wave-background-png-image_3609897.jpg); color:white" class  = "heading">Get Support
-        <a href = "login" ><button type = "submit" class = "login button1" >login</button></a></h1>
-        </div>
-        <nav class="navbar bg-light navbar-light navbar-expand-lg">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
-          </nav>
-            <script src = "{% static 'assets/js/translate/translate.js'%}"></script>
-            <script src = "{% static 'assets/js/translate/translate2.js'%}"></script>
-            <div id="translation" style = "float: left; margin : 0; padding : none;" class = "active"></div>
+  {% include "navbar.html" %}
+    <body style="background: linear-gradient(to right, #b92b27, #1565c0);>
+      <! --------------LOGO SECTION --->
+
+
             <br>
             </div>
-        <div class = "message" style="background-image: url(http://static1.squarespace.com/static/564dfd3ee4b0678bea6ec649/5653036de4b037d305e758b6/59a5441d4c0dbf78d3dad8e7/1511535681017/IMG_6973.JPG?format=1500w); 
-        color:blanchedalmond; height: 80%;"> 
-        <div style="padding-top: 15%;">
-        <h2>Welcome to Helpine</h2>
-        <p style="text-align: center;">We are Here to help Reugees from other countries and work with them.</p>
-        <h2>We provide 3 Services</h2>
-        </div>
-        </div>
-  
-    
-        
-            <center>        
-                            <div class="login-box" style="margin-top: -7%; background-color:white;" >
-                                <form> 
+        <div class = "message" style="background: linear-gradient(to right, #b92b27, #1565c0);
+        color:blanchedalmond; background-repeat: no-repeat; height: 100%;">
+      <div class="container">
+        {%for i in welcome%}
+        <h1>{{i.title}}</h1>
+        <h3>{{i.note}}</h3>
+        {%endfor%}
+
+      </div>
+
+
+
+
+            <center>
+                            <div class="login-box" style="margin-top: -23%; background-color:white;" >
+                                <form>
                                 <div class="row">
                                     <div class="col-sm-8">
                                   <a href="publicservices">
@@ -438,7 +438,7 @@ input {
                                     <span></span>
                                     <span></span>
                                     <span></span>
-                                    Public Services
+                                             Public Services
                                   </a></div>
                                   <div class="col-sm-4" >
                                   <a href="localservices">
@@ -451,83 +451,20 @@ input {
                                   </div>
                                 </form>
                                 </div>
-                        
+
             </center>
-        
+
         <br>
         <br>
         <br>
-        
 
-        <hr class = "devider">
-        <div class="foot">
-<div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="" method = "post">
-      {% csrf_token %}
-			<h1>Register to  Chat</h1>
-            
-            <input type="text" id="fname" name="fullname" placeholder = "Full Name">
-         
-          <input type="text" id="fname" name="username" placeholder = "Username">
-      
-         
-          <input type="text" id="lname" name="password" placeholder="password">
-      
-          <input type="text" id="lname" name="repassword" placeholder="Confirm password">
-			<button>Register</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="action_page.php">
-                
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-        
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-        
-            <label for="country">Country</label>
-            <select id="country" name="country">
-                <option value="australia">Australia</option>
-                <option value="canada">Canada</option>
-                <option value="usa">USA</option>
-            </select>
-        
-            <label for="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:50px"></textarea>
-        <button>Submit</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Contact US!</h1>
-				<p>Register yourself and start journey with us</p>
-				<button class="ghost" id="submit">Contact Us</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Chat With US</h1>
-				<p>To keep connected with us.</p>
-				<button class="ghost" id="chat">Register to Chat</button>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
 
-<script>
-    const signUpButton = document.getElementById('chat');
-const signInButton = document.getElementById('submit');
-const container = document.getElementById('container');
 
-signUpButton.addEventListener('click', () => {
-	container.classList.add("right-panel-active");
-});
+      </div>
+        {%include "contactusapi.html"%}
+        {%include "chatAV.html"%}
 
-signInButton.addEventListener('click', () => {
-	container.classList.remove("right-panel-active");
-});  
-</script>  
-    </body>
+
+
+
 </html>

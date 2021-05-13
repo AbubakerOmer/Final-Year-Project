@@ -1,10 +1,58 @@
 {% load static %}
 <html>
     <head>
-        <title>GPS</title>
+        <title>Banks</title>
         <link rel = "stylesheet" href = "{% static 'main.css'%}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
+    <style>
+     body{
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-size: cover;
+     height: 80%;
+     color: white;
+   }
+   .list{
+     background-image: linear-gradient(to right, #b92b27, #1565c0);
+     color: white;
+     opacity: 0.5;
+   }
+   .list:hover{
+     opacity: 1;
+   }
+   .container table{
+     width:100%;
+     font-size: 12px;
+   }
+    </style>
     <body>
-        <h1>GP</h1>
+{%include "navbar.html"%}
+<div class = "message" style="background: linear-gradient(to right, #b92b27, #1565c0);
+color:blanchedalmond; background-repeat: no-repeat; height: 80%;">
+        <h1 style="text-align: center; font-size: 50px; background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLV5AjtM9u0EiAT3NbjKqPjEty8eQ-JbNBbIHsL5NjEOaaJ0RgCs08oP6SIex8NyfQYDI&usqp=CAU)">GP's</h1>
+
+      <div class="container">
+        <table border="2">
+          <tr>
+            <th>Id</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+          </tr>
+          {%for i in banks%}
+          <tr>
+            <td class="notranslate">{{i.id}}</td>
+            <td class="notranslate">{{i.address}}</td>
+            <td class="notranslate">{{i.phone}}</td>
+          </tr>
+          {%endfor%}
+
+        </table>
+
+      </div>
+
+
     </body>
 </html>

@@ -1,0 +1,104 @@
+{#{% extends 'base.html' %}#}
+{% load static %}
+{% block content %}
+
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    .float{
+position:fixed;
+width:70px;
+height:70px;
+bottom:60px;
+right:60px;
+background-color:red;
+color:#FFF;
+border-radius:50px;
+text-align:center;
+box-shadow: 3px 3px 3px #999;
+}
+.my-float{
+	margin-top:22px;
+}
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+{% include "navbar.html" %}
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Query Form</h6>
+    </div>
+
+    <table class="table table-hover" id="dev-table" style="margin-top: 20px">
+
+
+
+
+
+       <form method="post" action="">
+       {% csrf_token %}
+{#             <tr>#}
+{#        <td>username</td>#}
+{#        <td>category_type</td>#}
+{#        <td>details</td>#}
+{#        <td>response</td>#}
+          {{ form.as_table }}
+
+       <td>
+
+
+
+{#            <select id="id_filter_by" name="filter_by" required>#}
+{##}
+{##}
+{#                <option value="time" selected="selected">{{ querys.username }}</option>#}
+{##}
+{##}
+{##}
+{##}
+{#                </select>#}
+ <button type="submit">Send</button>
+
+
+      </form>
+
+
+       </td>
+
+
+      </tr>
+
+
+    </table>
+  </div>
+</div>
+<a href="/add-customer" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+
+        {{ message }}
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+{% endblock content %}

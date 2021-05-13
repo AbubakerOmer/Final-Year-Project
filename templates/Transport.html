@@ -6,7 +6,6 @@
     </head>
     <style>
       body{
-        background-image: url(https://www.etc-transport.com/img/back_home.jpg);
         background-repeat: no-repeat;
      background-attachment: fixed;
      background-size: cover;
@@ -14,10 +13,13 @@
      color: white;
       }
       .list{
-        background-image: url(https://previews.123rf.com/images/doozydo/doozydo1901/doozydo190100412/114881720-magic-stars-christmas-background-subtle-flying-snow-flakes-and-stars-on-light-grey-background-bizarr.jpg);     
+        background-image: url(https://previews.123rf.com/images/doozydo/doozydo1901/doozydo190100412/114881720-magic-stars-christmas-background-subtle-flying-snow-flakes-and-stars-on-light-grey-background-bizarr.jpg);
       color: black;
-      opacity: 0.3; 
+      opacity: 0.8;
       font-weight: 100;
+      width:33%;
+
+      float: left;
       }
       .list:hover {
         opacity: 1;
@@ -25,20 +27,27 @@
 
     </style>
     <body>
-      <script src = "{% static 'assets/js/translate/translate.js'%}"></script>
-            <script src = "{% static 'assets/js/translate/translate2.js'%}"></script>
-            <div id="translation" style = "float: left;"></div>
-        <h1 style="font-size: 60px;text-align:center;">Transportation Services</h1>
+    {%include "navbar.html"%}
+    <div class = "message" style="background: linear-gradient(to right, #b92b27, #1565c0);
+    color:blanchedalmond; background-repeat: no-repeat; height: 80%;">
+        <h1 class="notranslate" style="font-size: 40px;text-align:center; color:white;">Transportation Services</h1>
         <div class="list">
-            <img src="" alt="Avatar" style="width:90px">
-            <p><span>Bank 1</span>Main Branch </p>
-            <p>address</p>
+            <img src="{%static "bus.jpg"%}" alt="Avatar" style="width:90px">
+            <p><span><b>Find a Bus.</b></span> </p>
+            <a href="https://bustimes.org/operators/cardiff-bus" target="_blank"><b>Bus Timetable:   </b>Click Here</a>
           </div>
-          
+
           <div class="list">
-            <img src="" alt="Avatar" style="width:90px">
-            <p><span></span></p>
-            <p></p>
+            <img src="{%static "train.jpg"%}" alt="Avatar" style="width:90px">
+            <p><span><b>plan your journey:</b></span></p>
+            <a href="https://www.cardiffbus.com/plan-a-journey" target="_blank">Click Here</a>
+
+          </div>
+          <div class="list">
+            <img src="{%static "rail.jpg"%}" alt="Avatar" style="width:90px">
+            <p><span><b>Find Train:</b></span></p>
+            <a href="https://www.nationalrail.co.uk" target="_blank">Click Here</a>
+</div>
           </div>
     </body>
 </html>

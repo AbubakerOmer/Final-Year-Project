@@ -3,10 +3,12 @@
     <head>
         <title>Banks</title>
         <link rel = "stylesheet" href = "{% static 'main.css'%}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <style>
      body{
-       background-image: url(https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8YmFua3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80);
      background-repeat: no-repeat;
      background-attachment: fixed;
      background-size: cover;
@@ -21,24 +23,37 @@
    .list:hover{
      opacity: 1;
    }
+   .container table{
+     width:100%;
+     font-size: 12px;
+   }
+
     </style>
     <body>
-      <script src = "{% static 'assets/js/translate/translate.js'%}"></script>
-            <script src = "{% static 'assets/js/translate/translate2.js'%}"></script>
-            <div id="translation" style = "float: left;"></div>
+{%include "navbar.html"%}
+<div class = "message" style="background: linear-gradient(to right, #b92b27, #1565c0);
+color:blanchedalmond; background-repeat: no-repeat; height: 80%;">
         <h1 style="text-align: center; font-size: 50px; background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLV5AjtM9u0EiAT3NbjKqPjEty8eQ-JbNBbIHsL5NjEOaaJ0RgCs08oP6SIex8NyfQYDI&usqp=CAU)">Banks</h1>
-        <p> Here is the list of banks</p>
-        <div class="list">
-            <img src="" alt="Avatar" style="width:90px">
-            <p><span>Bank 1</span>Main Branch </p>
-            <p>address</p>
-          </div>
-          
-          <div class="list">
-            <img src="" alt="Avatar" style="width:90px">
-            <p><span></span></p>
-            <p></p>
-          </div>
 
+      <div class="container">
+        <table border="2">
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>Services</th>
+            <th>Address</th>
+          </tr>
+          {%for i in banks%}
+          <tr>
+            <td class="notranslate">{{i.id}}</td>
+            <td class="notranslate">{{i.name}}</td>
+            <td class="notranslate">{{i.branch}}</td>
+            <td class="notranslate">{{i.services}}</td>
+            <td class="notranslate">{{i.address}}</td>
+          </tr>
+          {%endfor%}
+        </table>
+      </div>
     </body>
 </html>

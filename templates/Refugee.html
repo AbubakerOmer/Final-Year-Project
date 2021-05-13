@@ -1,24 +1,61 @@
 {% load static %}
 <html>
     <head>
-        <title>Refugees</title>
+        <title>Refugee</title>
+        <link rel = "stylesheet" href = "{% static 'main.css'%}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <style>
-        body {
-            background-image: url(https://i.pinimg.com/originals/00/5e/7b/005e7b665a61d4f71e52ad626dd3ec56.png);
-            background-repeat: no-repeat;
+     body{
+     background-repeat: no-repeat;
      background-attachment: fixed;
      background-size: cover;
-     color: black;
-     text-align: center;
-     font-size: 70px;
-        }
+     height: 80%;
+     color: white;
+   }
+   .list{
+     background-image: url(https://us.123rf.com/450wm/apostrophe/apostrophe1501/apostrophe150100001/35073031-dise%C3%B1o-de-textura-de-fondo-negro-con-pintura-rugosa-pared-manchada.jpg?ver=6);
+     color: white;
+     opacity: 0.5;
+   }
+   .list:hover{
+     opacity: 1;
+   }
+   .container table{
+     width:100%;
+     font-size: 12px;
+   }
+
     </style>
     <body>
-        <script src = "{% static 'assets/js/translate/translate.js'%}"></script>
-            <script src = "{% static 'assets/js/translate/translate2.js'%}"></script>
-            <div id="translation" style = "float: left;"></div>
-        <H1>Refugees</H1>
-        
+{%include "navbar.html"%}
+<div class = "message" style="background: linear-gradient(to right, #b92b27, #1565c0);
+color:blanchedalmond; background-repeat: no-repeat; height: 80%;">
+        <h1 style="text-align: center; font-size: 50px; background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLV5AjtM9u0EiAT3NbjKqPjEty8eQ-JbNBbIHsL5NjEOaaJ0RgCs08oP6SIex8NyfQYDI&usqp=CAU)">Refugee</h1>
+
+      <div class="container">
+        <table border="2">
+          <tr>
+            <th>Org Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Working Day</th>
+            <th>Website</th>
+          </tr>
+          {%for i in refe%}
+          <tr>
+            <td class="notranslate">{{i.org_name}}</td>
+            <td class="notranslate">{{i.email}}</td>
+            <td class="notranslate">{{i.phone}}</td>
+            <td class="notranslate">{{i.address}}</td>
+            <td class="notranslate">{{i.working_day}}</td>
+            <td class="notranslate">{{i.website}}</td>
+          </tr>
+          {%endfor%}
+        </table>
+      </div>
     </body>
 </html>

@@ -1,0 +1,97 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+
+    .float{
+	position:fixed;
+	width:70px;
+	height:70px;
+	bottom:60px;
+	right:60px;
+	background-color:red;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 3px 3px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+  </style>
+</head>
+
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Asylum Seekers</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Org Type</th>
+          <th>Org Name</th>
+          <th>Category</th>
+          <th>Phone</th>
+          <th>Working Day</th>
+          <th>Website</th>
+          <th>Email</th>
+
+          <th>Address</th>
+          <th>Delete</th>
+
+        </tr>
+      </thead>
+      {% for p in asy %}
+  {% if p %}
+
+      <tr>
+        <td> {{p.org_type}}</td>
+
+        <td>{{p.org_name}}</td>
+        <td>{{p.category}}</td>
+        <td>{{p.phone}}</td>
+        <td>{{p.working_day}}</td>
+        <td>{{p.website}}</td>
+          <td>{{p.email}}</td>
+          <td>{{p.address}}</td>
+          <td><a class="btn btn-danger btn-xs" href="{% url 'delete-asy' p.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+
+
+
+
+      </tr>
+      {%else%}
+      <br><br><br>
+      <h1>no Support</h1>
+      {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+</div>
+<!-- add product floating button -->
+<a href="/add-asy" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>
+
+{% endblock content %}

@@ -1,7 +1,7 @@
 {% load static %}
 <html>
     <head>
-        <title>Hospitals Near</title> 
+        <title>Hospitals Near</title>
         <link rel = "stylesheet" href = "{% static 'main.css'%}">
         <style>
           .container {
@@ -11,51 +11,83 @@
             padding: 16px;
             margin: 16px 0;
           }
-          
+
           /* Clear floats after containers */
           .container::after {
             content: "";
             clear: both;
             display: table;
           }
-          
+
           /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
           .container img {
             float: left;
             margin-right: 20px;
             border-radius:20%;
           }
-          
+
           /* Increase the font-size of a span element */
           .container span {
             font-size: 20px;
             margin-right: 15px;
           }
-          
+
           /* Add media queries for responsiveness. This will center both the text and the image inside the container */
           @media (max-width: 500px) {
             .container {
               text-align: center;
             }
-          
+
             .container img {
               margin: auto;
               float: none;
               display: block;
             }
           }
-          
+          table{
+            width: 100%;
+          }
+          .container th{
+            font-size: 15px;
+          }
+          .container td{
+            font-size: 12px;
+          }
         </style>
     </head>
     <body>
-      <h1>Hospitals list</h1>
-      {% for dest in dests %}
-      
-      <div class="container">
-        <img src="{{dest.img.url}}" alt="Avatar" style="width:90px">
-        <p><span>{{dest.name}}</span>{{dest.tag}}</p>
-        <p>{{dest.address}}</p>
+      {%include "navbar.html"%}
+      <div class = "message" style="background: linear-gradient(to right, #b92b27, #1565c0);
+      ">
+
+      <h1 style="text-align: center;">Hospitals list</h1>
+
+        <div class="container">
+<table border="2px">
+  <span class="notranslate">
+<tr>
+  <th>Hospital id</th>
+  <th>Hospital Name</th>
+  <th>Description</th>
+  <th>Tags</th>
+  <th>Address</th>
+</tr>
+{% for dest in dests %}
+<tr>
+  <td>{{dest.id}}</td>
+  </span>
+  <td class="notranslate">{{dest.name}}</td>
+  <td>{{i.description}}</td>
+  <td class="notranslate">{{dest.tag}}</td>
+  <td class="notranslate">{{dest.address}}</td>
+</tr>
+
+  {%endfor%}
+</table>
+
+
+
       </div>
-      {%endfor%}
+    </div>
     </body>
 </html>

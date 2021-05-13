@@ -1,0 +1,124 @@
+{% include 'navbar.html' %}
+{% load static %}
+{% block content %}
+
+
+<head>
+
+
+
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'table/css/bootstrap.css' %}"/>
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'table/css/jquery.dataTables.css' %}"/>
+
+
+
+      <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    .float{
+position:fixed;
+width:70px;
+height:70px;
+bottom:60px;
+right:60px;
+background-color:red;
+color:#FFF;
+border-radius:50px;
+text-align:center;
+box-shadow: 3px 3px 3px #999;
+}
+.my-float{
+	margin-top:22px;
+}
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Query List</h6>
+    </div>
+    <table class="table table-hover searchable sortable" id="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category Type</th>
+          <th>Details</th>
+            <th>Time</th>
+            <th>Edit</th>
+            <th>Delete</th>
+             <th>status</th>
+             <th>Consellor</th>
+
+
+
+
+
+        </tr>
+      </thead>
+      {% for c in all %}
+
+      <tr>
+        <td>{{c.user}}</td>
+        <td> {{c.category_type}}</td>
+        <td>{{c.details}}</td>
+        <td>{{c.time}}</td>
+
+
+
+
+
+
+
+
+         <td><a href="{% url 'edit-query' c.sno  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
+          <td><a  href="{% url 'userdelete-query' c.sno  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+            <td>{{c.status}}</td>
+            <td>{{ c.assign }}</td>
+
+
+
+
+
+
+
+
+
+{% endfor %}
+
+
+      </tr>
+
+
+
+    </table>
+  </div>
+</div>
+<a href="/add-customer" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>
+
+
+<script src = "{% static 'table/js/jquery-3.2.1.js' %}"></script>
+<script src = "{% static 'table/js/jquery.dataTables.js' %}"></script>
+<script type = "text/javascript">
+    $(document).ready(function(){
+        $('#table').DataTable();
+    });
+</script>
+
+
+{% endblock content %}

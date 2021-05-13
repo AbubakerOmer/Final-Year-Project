@@ -1,0 +1,100 @@
+{% include 'navbar.html' %}
+{% load static %}
+{% block content %}
+
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    .float{
+position:fixed;
+width:70px;
+height:70px;
+bottom:60px;
+right:60px;
+background-color:red;
+color:#FFF;
+border-radius:50px;
+text-align:center;
+box-shadow: 3px 3px 3px #999;
+}
+.my-float{
+	margin-top:22px;
+}
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Query List</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+
+{#          <th>Name</th>#}
+{#          <th>Category Type</th>#}
+{#          <th>Details</th>#}
+            <th>Status</th>
+              <th>Query</th>
+
+
+
+
+
+
+
+        </tr>
+      </thead>
+      {% for c in query_status %}
+      <tr>
+
+        <td> {{c.status}}</td>
+{#        <td>{{c.details}}</td>#}
+{#        <td>{{c.time}}</td>#}
+
+
+
+
+       <td>
+
+       </td>
+
+
+      </tr>
+      {% endfor %}
+{#          {% for c1 in query %}#}
+{#    <tr>#}
+{#        <td>Query:{{c1.details}}</td>#}
+{#        <td>Time:{{c1.time}}</td>#}
+{#      <td>Time:{{c1.currenstatus}}</td>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+
+    </table>
+  </div>
+</div>
+<a href="/add-customer" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>
+
+
+
+
+
+{% endblock content %}
