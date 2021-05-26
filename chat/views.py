@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import get_user_model
 from django.shortcuts import Http404
-
+# from app.models import Ass
+from app.models import Messages_Assigned
 from app.views import is_newuser,is_admin,is_consellor
 from chat.models import Thread, Message
 from django.contrib.auth.models import User
@@ -29,7 +30,7 @@ def get_All_Users(request):
 
     if group_type=='CONSELLOR' or group_type=="G_ADMIN":
 
-        print("IS CONSELLOR or GADMIN")
+        print("IS CONSELLOR or G_ADMIN")
         all_users = User.objects.all().exclude(username=request.user.username)
         print(all_users)
         return render(request, "mychats.html", {'all_users': all_users})
@@ -44,7 +45,23 @@ def get_All_Users(request):
 
         print(random_admin)
 
-        return render(request,"mychats.html",{"all_users":random_admin})
+        if Message.objects.filter(sender=current_logged_user).count()==0:
+            return render(request, "mychats.html", {"all_users": random_admin})
+
+        else:
+            all_msg_by_user = Message.objects.filter(sender=current_logged_user)
+
+            temp = []
+            for data in all_msg_by_user:
+                try:
+                    msg = Messages_Assigned.objects.get(Message_Id=data)
+                    temp.append(msg.Assigned_To)
+                except Messages_Assigned.DoesNotExist:
+                    pass
+
+            return render(request, "mychats.html", {"all_users": temp})
+
+
 
 
 
@@ -77,8 +94,13 @@ class ThreadView(View):
         if group_type == 'CONSELLOR' or group_type == "G_ADMIN":
 
             print("IS CONSELLOR or GADMIN")
-            all_users = User.objects.all().exclude(username=self.request.user.username)
-            print(all_users)
+            # all_users = User.objects.all().exclude(username=self.request.user.username)
+            # print(all_users)
+            msg_assigned_users = Messages_Assigned.objects.filter(Assigned_To=current_logged_user)
+            all_users = [users.Message_Id.sender for users in msg_assigned_users]
+
+
+
             context['all_users'] = all_users
             # return render(self.request, "mychats.html", {'all_users': all_users})
 
@@ -91,7 +113,18 @@ class ThreadView(View):
             random_admin = random.sample(g_admins_list, 1)
 
             print(random_admin)
-            context['all_users'] = []
+
+            all_msg_by_user=Message.objects.filter(sender=current_logged_user)
+
+            temp=[]
+            for data in all_msg_by_user:
+                try:
+                    msg=Messages_Assigned.objects.get(Message_Id=data)
+                    temp.append(msg.Assigned_To)
+                except Messages_Assigned.DoesNotExist:
+                    pass
+
+            context['all_users'] = temp
             # return render(request, "chat/chat.html", {"all_users": random_admin})
 
 

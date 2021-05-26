@@ -1,0 +1,120 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block content %}
+{% load decrypt %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    .float{
+position:fixed;
+width:70px;
+height:70px;
+bottom:60px;
+right:60px;
+background-color:red;
+color:#FFF;
+border-radius:50px;
+text-align:center;
+box-shadow: 3px 3px 3px #999;
+}
+.my-float{
+	margin-top:22px;
+}
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">New Messages </h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+            <th>Messages</th>
+{#          <th>Assigned To</th>#}
+          <th>Assign Message</th>
+          <th>Delete Request</th>
+
+        </tr>
+      </thead>
+    {% for msg in all_messages %}
+      <form action="{% url 'assign-msg-request' %}" method="post">
+        {% csrf_token %}
+        <tr>
+
+        <td>{{ msg.sender.username }}</td>
+        <td> {% decryptMsg msg.text %}</td>
+
+{#        <td>{{p.description}}</td>#}
+{#          <td>{{p.address}}</td>#}
+          <td>
+              <select name="assigned_to">
+                {% for councellor in all_councellor %}
+                    <option value="{{ councellor.id }}">{{ councellor.username }}</option>
+                {% endfor %}
+              </select>
+                <input type="hidden" value="{{ msg.id }}" name="message_id">
+                <button type="submit">Save</button>
+          </td>
+          <td><a class="btn btn-danger btn-xs" href="{% url 'deletemsg'  %}?msg_id={{ msg.id }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+      </tr>
+        </form>
+    {% endfor %}
+    </table>
+  </div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Assigned Messages </h6>
+    </div>
+  <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Messages</th>
+          <th>Assigned Date</th>
+            <th>Assigned To</th>
+{#          <th>Delete Request</th>#}
+
+        </tr>
+      </thead>
+    {% for msg in assigned_messages %}
+      <tr>
+
+        <td>{{ msg.Message_Id.sender.username }}</td>
+        <td> {% decryptMsg msg.Message_Id.text %}</td>
+
+        <td>{{msg.Assigned_Date}}</td>
+          <td>{{msg.Assigned_To.username}}</td>
+          <td>{{p.tag}}</td>
+{#          <td><a class="btn btn-danger btn-xs" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>#}
+      </tr>
+    {% endfor %}
+    </table>
+
+
+
+
+  </div>
+</div>
+
+    {%include "chatAV.html"%}
+
+{% endblock content %}

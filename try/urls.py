@@ -102,6 +102,13 @@ urlpatterns = [
     path('change_password/', views.change_password, name='change_password'),
     path('view-consellor/', views.consellorlist, name='view-consellor'),
     path('consellor-dashboard/', views.consellor_dash, name='consellor-dashboard'),
+    path('messagereqcoun/', views.messagereqcoun, name='messagereqcoun'),
+    path('deletemsg/',views.deletemsg,name="deletemsg"),
+    path('admin-user-request', views.admin_user_request, name="msgreq-admin"),
+    path('assign-msg-request', views.assign_msg_request, name="assign-msg-request"),
+    path('redirect_chat/',views.redirect_chat,name="redirect_chat"),
+
+
     path('query-form/', views.Queryform, name='query-form'),
     path('query-status/', views.Querystatusform, name='query-status'),
     path('delete-query/<int:pk>', views.delete_query, name='delete-query'),

@@ -870,6 +870,7 @@
 					<input name="twitter" type="text" value="mike.ross" />
 				</div>
 			</div>
+            <a href="/logout" style="margin-left: 80px"><button class="">Logout</button></a>
 		</div>
 		<div id="search">
 			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
@@ -898,10 +899,14 @@
 	<div class="content">
 		<div class="contact-profile">
 			<img src="{% static 'images/usericon.png' %}" alt="" />
-			<p>{{ user.username }}</p>
+			<p>{{ user.username }} </p>
+{#            <a href="/logout"><button>Logout</button></a>#}
 			<div class="social-media">
                 <a class="portfolio-link">
                     <div id="addAV">
+
+                        <i class="fa fa-phone fa-2x call-icon" aria-hidden="true"></i>
+                        <i class="fa fa-video-camera fa-2x call-icon" aria-hidden="true"></i>
 
                     </div>
 				<i class="fa fa-phone fa-2x call-icon peeruser" hidden aria-hidden="true" id="myusericon"></i>

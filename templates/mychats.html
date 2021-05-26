@@ -739,6 +739,7 @@
 			<div class="wrap">
 				<img id="profile-img" src="{% static 'images/usericon.png' %}" class="online" alt="" />
 				<p style="font-size: 20px;font-weight: bolder">{{ request.user.username }}</p>
+
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 {#				<div id="status-options">#}
 {#					<ul>#}
@@ -757,6 +758,8 @@
 {#					<input name="twitter" type="text" value="mike.ross" />#}
 {#				</div>#}
 			</div>
+            <br>
+            <a href="/logout" style="margin-left: 80px"><button class="">Logout</button></a>
 		</div>
 		<div id="search">
 			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>

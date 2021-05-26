@@ -87,6 +87,57 @@ def consellor_dash(request):
     print("--all--",all)
     return render(request,"consellor_dashboard.html",{"all":all})
 
+
+
+def admin_user_request(request):
+    current_logged_user = User.objects.get(username=request.user.username)
+    all_mess=Message.objects.filter(sender__groups__name="NEW_USER",thread__users=current_logged_user)
+    all_messages=[msg for msg in all_mess]
+    all_assigned_messages=[ass_msg.Message_Id for ass_msg in Messages_Assigned.objects.filter(Assigned_By=request.user.id)]
+    ass_msgs_counter=0
+    for ass_msgs in all_assigned_messages:
+        if ass_msgs in all_messages:
+            ind=all_messages.index(ass_msgs)
+            all_messages.pop(ind)
+        ass_msgs_counter+=1
+    all_councellor=User.objects.filter(groups__name="CONSELLOR")
+    return render(request, "admin_user_requests.html",{'all_messages':all_messages,"all_councellor":all_councellor,
+                                                       "assigned_messages":Messages_Assigned.objects.filter(Assigned_By=request.user.id)})
+
+
+def assign_msg_request(request):
+    #print()
+    # print(request.POST.get('message_id'))
+    Messages_Assigned(Message_Id=Message.objects.get(id=request.POST.get('message_id')),Assigned=True,Assigned_To=User.objects.get(id=request.POST.get('assigned_to')),
+                      Assigned_By=User.objects.get(id=request.user.id),).save()
+    return redirect('msgreq-admin')
+
+
+def redirect_chat(request):
+    current_logged_user = User.objects.get(username=request.user.username)
+
+    msg_assigned_users=Messages_Assigned.objects.filter(Assigned_To=current_logged_user)
+
+    all_users=[users.Message_Id.sender for users in msg_assigned_users]
+
+    # if group_type == 'CONSELLOR' or group_type == "G_ADMIN":
+    #     print("IS CONSELLOR or GADMIN")
+    #     all_users = User.objects.all().exclude(username=request.user.username)
+    #     print(all_users)
+    return render(request, "mychats.html", {'all_users': all_users})
+
+
+
+def messagereqcoun(request):
+    print(request.user.id)
+    return render(request, "councellor_msg_req.html",{"assigned_messages":Messages_Assigned.objects.filter(Assigned_To=request.user.id)})
+
+
+def deletemsg(request):
+    Message.objects.get(id=request.GET.get("msg_id")).delete()
+    return redirect('msgreq-admin')
+
+
 ###############-----------------Admin Dashboard-------######################
 @login_required(login_url='customerlogin')
 @user_passes_test(is_admin)

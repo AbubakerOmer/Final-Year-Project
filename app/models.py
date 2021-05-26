@@ -3,6 +3,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+from chat.models import Message
+
+
 class Customer(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic= models.ImageField(upload_to='profile_pic/CustomerProfilePic/',blank=True)
@@ -114,3 +117,13 @@ class Querystatus(models.Model):
 
 class Save_value(models.Model):
      consellor = models.CharField(max_length=35)
+
+
+
+class Messages_Assigned(models.Model):
+    Id=models.AutoField(primary_key=True)
+    Message_Id=models.ForeignKey(Message,on_delete=models.CASCADE)
+    Assigned=models.BooleanField()
+    Assigned_To=models.ForeignKey(User,on_delete=models.CASCADE,related_name="Assigned_To")
+    Assigned_By=models.ForeignKey(User,on_delete=models.CASCADE,related_name="Assigned_By")
+    Assigned_Date=models.DateTimeField(auto_now=True)
