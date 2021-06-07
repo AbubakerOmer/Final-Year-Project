@@ -39,7 +39,7 @@ class CustomerUserForm(forms.ModelForm):
 
     class Meta:
         model=User
-        fields=['username','password']
+        fields=['username','password','email']
         widgets = {
         'password': forms.PasswordInput()
         }
@@ -66,15 +66,15 @@ STATUS_CHOICES = (
 
     ("PENDING", "PENDING"),
     ("APPROVED", "APPROVED"),
-)
+    ("REJECTED", "REJECTED"),)
 
 class QueryStatus(forms.ModelForm):
     # category_type = forms.ChoiceField(choices=CATEGEORY_CHOICES)
     status = forms.ChoiceField(choices=STATUS_CHOICES)
-
+   
     class Meta:
         model = Query
-        exclude = ["currenstatus","assign"]
+        exclude = ["currenstatus","assign",'user']
 
 
 

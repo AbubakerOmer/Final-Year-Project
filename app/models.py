@@ -85,13 +85,14 @@ CATEGEORY_CHOICES  = (
 STATUS_CHOICES = (
 
     ("PENDING", "PENDING"),
-    ("APPROVED", "APPROVED"),)
+    ("APPROVED", "APPROVED"),
+    ("REJECTED", "REJECTED"),)
 
 
 class Query(models.Model):
     sno = models.AutoField(primary_key=True,blank=True)
     currenstatus = models.BooleanField(default=True)
-    category_type = models.CharField(max_length=50,choices=CATEGEORY_CHOICES,default=True,blank=True)
+    category_type = models.CharField(max_length=50,choices=CATEGEORY_CHOICES,default='PENDING',blank=True)
     details = models.TextField(default=True,blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True, blank=True)
     time = models.DateTimeField(auto_now_add=True)

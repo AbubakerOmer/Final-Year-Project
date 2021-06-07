@@ -49,19 +49,20 @@ box-shadow: 3px 3px 3px #999;
 <div class="container" style="margin-top: 50px">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h6 class="panel-title">Total Consellor List</h6>
+      <h6 class="panel-title">All Queries List</h6>
     </div>
     <table class="table table-hover" id="table">
       <thead >
         <tr>
-            <th>id</th>
+
             <th>Name</th>
             <th>Category Type</th>
             <th>Details</th>
-            <th>gg</th>
             <th>Date</th>
-            <th>Status</th>
-            <th>Assign to consellor</th>
+            <th>Current Status</th>
+            <th>Counsellor</th>
+            <th>Assign to New Counsellor</th>
+            <th>Delete</th>
 
 
         </tr>
@@ -69,12 +70,15 @@ box-shadow: 3px 3px 3px #999;
       {% for c in query %}
           <tbody>
           <tr>
-          <td>{{ c.id }}</td>
+
           <td>{{c.user.username}}</td>
           <td> {{c.category_type}}</td>
           <td>{{c.details}}</td>
           <td>{{c.time}}</td>
           <td><a href="{% url 'edit-querystatus' c.sno  %}">{{c.status}}</a></td>
+
+              {% if c.status != 'REJECTED'%}
+             <td>{{c.assign}}</td>
               <td>
                    <form method="post" action="">
                    {% csrf_token %}
@@ -83,8 +87,12 @@ box-shadow: 3px 3px 3px #999;
                               <option  name="assign" selected="selected" >{{ querys.username }}</option>
                           {% endfor %}
                        </select>
+                       {%else%}
+                       <td><p>NONE</p></td>
+                        <td><p>NONE</p></td>
+                       {%endif%}
                        <input type="hidden" value=" {{ c.sno }}" name="val">
-                       <button type="submit">Send</button>
+                       <button type="submit" >Send</button >
                       <td><a class="btn btn-danger btn-xs" href="{% url 'delete-query' c.sno  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
                    </form>
               </td>

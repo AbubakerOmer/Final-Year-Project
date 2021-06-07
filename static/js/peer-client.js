@@ -1,9 +1,10 @@
 peerapp = (function() {
-    'use strict';
+  'use strict';
 
     console.log("Peer client started");
-
-    var PEER_SERVER = 'my-peer.herokuapp.com';
+    //var PEER_SERVER = 'my-peer.herokuapp.com';
+    var PEER_SERVER = 'my-peerserver.herokuapp.com';
+    //var PEER_SERVER = '9000-indigo-bedbug-mjb7jp1q.ws-eu08.gitpod.io';
     var PORT = 443;
     var connectedPeers = {};
     var myPeerID = generateRandomID(4);
@@ -20,12 +21,18 @@ peerapp = (function() {
         if(peer && peer.disconnected == false) {
             peer.disconnect()
         }
-        peer = new Peer(myPeerID, { host: PEER_SERVER, port: PORT, path: '/', secure: true });  
+        try{
+         peer = new Peer(myPeerID, { host: PEER_SERVER, port: PORT, path: '/', secure: true });
         peerCallbacks(peer);
+       }catch(err){
+       console.log(err);
+       }
+
+        console.log('howa')
     }    
     // var peer = new Peer({ host: 'my-peer.herokuapp.com', port: '443', path: '/', secure: true });
     // connectToServerWithId(myPeerID);
-    console.log(peer)
+    console.log('this is the peer',peer)
 
     initializeLocalMedia({'audio': true, 'video': true});
 
@@ -302,12 +309,16 @@ peerapp = (function() {
     function fetchOnlinePeers() {
         $.ajax("https://" + PEER_SERVER + "/peerjs/" + myPeerID + "/onlineusers")
         .done(function( data ) {
-            // console.log(data);
+            console.log(data);
             if(data.msg == 'Success') {
                 data.users.splice(data.users.indexOf(myPeerID), 1)
                 myapp.updateOnlieUsers(data.users)
             }
         });
+//        .error(function(err){
+//            console.log(err);
+//        });
+
     }
 
     // Update Online users on every 5 seconds

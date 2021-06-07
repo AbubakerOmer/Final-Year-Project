@@ -9,7 +9,7 @@
 
 
     <style media="screen">
-      body {
+        body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
@@ -20,14 +20,20 @@
     width: 500px;
     padding: 40px;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    background-color: white;
-    ;
+    top: 5%;
+    left: 30%;
+    background: white;
+
     text-align: center;
     transition: 0.25s;
-    margin-top: 100px
+    margin-top: 100px;
+    border: 6px;
+    border-color: black;
 }
+body{
+    background: linear-gradient(to right, #b92b27, #1565c0);
+}
+
 
 .box input[type="text"],
 .box input[type="password"] {
@@ -46,7 +52,7 @@
 }
 
 .box h1 {
-    color: black;
+    color:  black;
     text-transform: uppercase;
     font-weight: 500
 }
@@ -70,6 +76,7 @@
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer
+
 }
 
 .box input[type="submit"]:hover {
@@ -142,8 +149,7 @@ a.socialIcon:hover,
     color: #fff;
     transition: all 0.8s;
     transition: all 0.8s
-}
-    </style>
+</style>
   </head>
   <body>
 
@@ -157,7 +163,7 @@ a.socialIcon:hover,
                     <p class="text-muted"> Please enter your details to create account !</p>
                       {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
                         {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
-                          {% render_field userForm.username class="form-control" placeholder="Username" %}
+                          {% render_field userForm.username class="form-control" placeholder="Username / email" type="email" %}
                             {% render_field userForm.password class="form-control" placeholder="Password" %}
                               {% render_field customerForm.email class="form-control" placeholder="Email" %}
                                 {% render_field customerForm.mobile class="form-control" placeholder="Mobile" %}

@@ -21,7 +21,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth.forms import PasswordChangeForm
 from .models import Query,Querystatus,Save_value
-
 from django.conf import settings
 from django.core.mail import send_mail
 # Create your views here.
@@ -33,8 +32,9 @@ def customer_signup_view(request):
         userForm=CustomerUserForm(request.POST)
         customerForm=CustomerForm(request.POST,request.FILES)
         if userForm.is_valid() and customerForm.is_valid():
-            user=userForm.save()
+            user=userForm.save(False)
             user.set_password(user.password)
+            user.email = userForm.cleaned_data['username']
             user.save()
             customer=customerForm.save(commit=False)
             customer.user=user
@@ -174,8 +174,9 @@ def admin_add_customer(request):
         userForm=CustomerUserForm(request.POST)
         customerForm=CustomerForm(request.POST,request.FILES)
         if userForm.is_valid() and customerForm.is_valid():
-            user=userForm.save()
+            user=userForm.save(False)
             user.set_password(user.password)
+            user.email=userForm.cleaned_data['username']
             user.save()
             customer=customerForm.save(commit=False)
             customer.user=user
@@ -563,7 +564,6 @@ def Querystatusform(request,pk):
         form = QueryStatus(request.POST, instance=query)
         if form.is_valid():
             query = form.save(commit=False)
-            query.user = request.user
             query.save()
             return redirect('view-consellor')
     else:
@@ -572,7 +572,7 @@ def Querystatusform(request,pk):
 
 
 def delete_query(request,pk):
-    ref=Query.objects.get(id=pk)
+    ref=Query.objects.get(sno=pk)
     ref.delete()
     return redirect('/view-consellor')
 

@@ -13,7 +13,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib.auth.models import Group
 import random
-
+from app.models import *
 def home(request):
     return render(request,'home.html')
 
@@ -28,10 +28,20 @@ def get_All_Users(request):
     print(group_type)
 
 
-    if group_type=='CONSELLOR' or group_type=="G_ADMIN":
+    if group_type=='CONSELLOR':
 
+        all_users =[]
         print("IS CONSELLOR or G_ADMIN")
-        all_users = User.objects.all().exclude(username=request.user.username)
+        only_assigned = Query.objects.filter(assign=current_logged_user.username)
+        assigned_unqiue = Query.objects.values('user').distinct()
+        for assigned in assigned_unqiue:
+            try:
+                x= assigned['user']
+                usr= User.objects.get(id=x)
+                all_users.append(usr)
+            except Exception as e:
+                print(e)
+        #all_users = User.objects.all().exclude(username=request.user.username)
         print(all_users)
         return render(request, "mychats.html", {'all_users': all_users})
 
@@ -43,10 +53,24 @@ def get_All_Users(request):
         print(type (g_admins))
         random_admin=random.sample(g_admins_list,1)
 
+        ##new stuff
+        all_users = []
+        only_assigned = Query.objects.filter(user=current_logged_user)
+        assigned_unqiue = Query.objects.values('assign').distinct()
+        for assigned in assigned_unqiue:
+
+            try:
+                x = assigned['assign']
+                usr = User.objects.get(username=x)
+                all_users.append(usr)
+            except Exception as e:
+                print(e)
+        ##end new stuff
+
         print(random_admin)
 
         if Message.objects.filter(sender=current_logged_user).count()==0:
-            return render(request, "mychats.html", {"all_users": random_admin})
+            return render(request, "mychats.html", {"all_users": all_users})
 
         else:
             all_msg_by_user = Message.objects.filter(sender=current_logged_user)
@@ -56,10 +80,12 @@ def get_All_Users(request):
                 try:
                     msg = Messages_Assigned.objects.get(Message_Id=data)
                     temp.append(msg.Assigned_To)
+                    all_users.append(msg.Assigned_To)
+
                 except Messages_Assigned.DoesNotExist:
                     pass
 
-            return render(request, "mychats.html", {"all_users": temp})
+            return render(request, "mychats.html", {"all_users": all_users})
 
 
 

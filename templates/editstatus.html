@@ -46,7 +46,7 @@ box-shadow: 3px 3px 3px #999;
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-          <th>Name</th>
+
           <th>Category Type</th>
           <th>Details</th>
             <th>Status</th>
@@ -61,10 +61,10 @@ box-shadow: 3px 3px 3px #999;
         <form method="post" action="">
             {% csrf_token %}
              <tr>
-        <td>{{form.user.username}}</td>
-                 <td>{{form.category_type}}</td>
 
-        <td>{{form.details}}</td>
+                 <td >{{form.category_type.value}}</td>
+
+        <td dis>{{form.details.value}}</td>
         <td>{{form.status}}</td>
 
 

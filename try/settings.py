@@ -27,7 +27,7 @@ SECRET_KEY = '!g%@mun7_0kl6-iimnu$jy4nrt)9knp*)csopza@nxkq3-d7)$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'import_export',
     'chat',
     'crispy_forms',
+#'django_extensions',
 
 ]
 
@@ -143,23 +144,24 @@ MEDIA_URL = '/media/'
 
 
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
+    # 'default': {
+    #     'BACKEND': 'channels_redis.core.RedisChannelLayer',
+    #     'CONFIG': {
+    #         "hosts": [('127.0.0.1', 6379)],
+    #     },
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
     },
-}
+    }
+
 ACCOUNT_ACTIVATION_DAYS = 3
 # EMAIL_HOST = 'localhost'
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL: False
-
-
-EMAIL_HOST_USER = 'poonampython@gmail.com'
-EMAIL_HOST_PASSWORD = "kdczfxgczkfarhgb"
+EMAIL_HOST_USER = 'abu.finalproject@gmail.com'
+EMAIL_HOST_PASSWORD = 'abu@1234'
 
 
